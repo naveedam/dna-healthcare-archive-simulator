@@ -6,4 +6,4 @@ class RecordType:
     name: str
     size_mb: float
     annual_rate: float
-    archive_after_years: int
+    retention_years: int

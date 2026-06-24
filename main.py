@@ -5,21 +5,30 @@ def main():
 
     simulator = HospitalSimulator()
 
-    results = simulator.simulate(20)
+    yearly_data = simulator.simulate(20)
 
-    total_storage = 0
+    results = simulator.calculate_storage_tiers(yearly_data)
 
     print("\nDNA Healthcare Archive Simulator\n")
 
+    print(
+        f"{'Year':<6}"
+        f"{'Patients':<12}"
+        f"{'Active TB':<15}"
+        f"{'DNA TB':<15}"
+        f"{'Total TB':<15}"
+    )
+
+    print("-" * 63)
+
     for row in results:
 
-        total_storage += row["storage_tb"]
-
         print(
-            f"Year {row['year']:2d} | "
-            f"Patients: {row['patients']:8,d} | "
-            f"New Data: {row['storage_tb']:8.2f} TB | "
-            f"Cumulative: {total_storage:10.2f} TB"
+            f"{row['year']:<6}"
+            f"{row['patients']:<12,d}"
+            f"{row['active_tb']:<15.2f}"
+            f"{row['dna_tb']:<15.2f}"
+            f"{row['total_tb']:<15.2f}"
         )
 
 
