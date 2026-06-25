@@ -1,4 +1,5 @@
 from src.models.record import RecordType
+from src.models.dna_storage_model import DNAStorageModel
 
 
 class HospitalSimulator:
@@ -7,6 +8,9 @@ class HospitalSimulator:
 
         self.initial_patients = 100000
         self.growth_rate = 0.08
+
+        # DNA storage assumptions
+        self.dna_storage = DNAStorageModel()
 
         self.record_types = [
             RecordType("EHR", 2, 5, 7),
@@ -81,13 +85,56 @@ class HospitalSimulator:
                     else:
                         active_tb += storage
 
+            # ---------------------------------
+            # DNA Compression
+            # ---------------------------------
+
+            physical_dna_tb = self.dna_storage.physical_storage_required(dna_tb)
+
+            dna_media_units = self.dna_storage.dna_media_units(
+                physical_dna_tb
+            )
+
+            # ---------------------------------
+            # Economics
+            # ---------------------------------
+
+            active_cost = (
+                active_tb *
+                self.dna_storage.active_storage_cost_per_tb
+            )
+
+            dna_cost = (
+                dna_tb *
+                self.dna_storage.dna_archive_cost_per_tb
+            )
+
+            total_cost = active_cost + dna_cost
+
+            all_active_cost = (
+                (active_tb + dna_tb) *
+                self.dna_storage.active_storage_cost_per_tb
+            )
+
+            savings = all_active_cost - total_cost
+
             results.append(
                 {
                     "year": current_year,
                     "patients": current_year_data["patients"],
+
                     "active_tb": active_tb,
                     "dna_tb": dna_tb,
-                    "total_tb": active_tb + dna_tb
+                    "physical_dna_tb": physical_dna_tb,
+                    "dna_media_units": dna_media_units,
+
+                    "total_tb": active_tb + dna_tb,
+
+                    "active_cost": active_cost,
+                    "dna_cost": dna_cost,
+                    "total_cost": total_cost,
+                    "all_active_cost": all_active_cost,
+                    "savings": savings
                 }
             )
 
