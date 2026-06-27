@@ -1,224 +1,221 @@
-## Current Status
-
-Current Development Stage
-
-**Milestone 4 – Healthcare Network Simulator (Phase 1)**
-
-Completed Features
-
-* Healthcare data growth simulation
-* Record-type modelling
-* Tiered archival simulation
-* DNA compression modelling
-* DNA storage economics
-* Scenario analysis
-* Healthcare network framework
-
-Current Simulation Capabilities
-
-* Single hospital simulation
-* Multi-hospital framework
-* Active vs DNA archive modelling
-* Storage economics
-* Configurable DNA assumptions
-* Twenty-year forecasting
-
 # DNA Healthcare Archive Simulator
 
-A simulation platform for modeling long-term healthcare data growth and evaluating the use of DNA-based archival storage.
+**Version:** 0.4.0
+
+A simulation platform for evaluating long-term healthcare data growth and exploring future archival strategies using configurable DNA storage assumptions.
 
 ---
 
 # Overview
 
-Healthcare organizations generate and retain enormous amounts of data:
+Healthcare organizations generate enormous volumes of digital information every day. Electronic Health Records (EHR), medical imaging, laboratory systems, pathology, genomics, and AI-assisted clinical workflows are driving exponential storage growth while regulatory requirements demand that many records be retained for years or decades.
 
-- Electronic Health Records (EHR)
-- MRI scans
-- CT scans
-- X-Ray images
-- Laboratory reports
-- Genomics data (future milestone)
+The DNA Healthcare Archive Simulator is a research-oriented simulation platform that models how healthcare organizations may manage long-term data growth using a tiered storage architecture that includes DNA-based archival storage as a future technology option.
 
-As patient populations grow, healthcare providers face increasing challenges related to:
-
-- Storage capacity
-- Long-term retention
-- Regulatory compliance
-- Archival costs
-- Infrastructure planning
-
-DNA storage is an emerging technology capable of preserving digital information for decades or even centuries while requiring dramatically less physical space than traditional storage media.
-
-This project simulates how healthcare data could be managed using a tiered storage architecture that automatically migrates aging records from active storage into DNA archives.
+The project is intentionally **simulation-first**. It is not intended to implement DNA storage technologies, but rather to provide a configurable environment for evaluating infrastructure planning, storage economics, and long-term archival strategies under different assumptions.
 
 ---
 
-# Project Goals
+# Current Release
 
-The simulator aims to answer questions such as:
+**Release:** v0.4.0
 
-- How much healthcare data will be generated over 20 years?
-- How quickly does storage growth accelerate?
-- Which record types consume the most storage?
-- How much data remains active?
-- How much data can be moved into DNA archives?
-- What percentage of data is suitable for long-term preservation?
-- What are the future infrastructure requirements?
+Current capabilities include:
+
+* Patient population growth simulation
+* Healthcare record generation modelling
+* Record retention policy simulation
+* Active vs DNA archive tier modelling
+* DNA compression modelling
+* Physical DNA storage estimation
+* DNA storage economics
+* Scenario analysis
+* Multi-hospital healthcare network simulation
+* Regional storage aggregation
+* Network-wide infrastructure reporting
+
+---
+
+# Why This Project?
+
+Healthcare data is growing faster than traditional storage infrastructures were originally designed to support.
+
+Questions that healthcare architects increasingly face include:
+
+* How much storage will hospitals require over the next twenty years?
+* Which healthcare records remain operationally active?
+* Which records are suitable for long-term archival?
+* How much physical DNA storage might eventually be required?
+* What infrastructure savings could archival tiering provide?
+* How do assumptions change planning outcomes?
+
+This simulator is designed to explore these questions through repeatable simulation rather than prediction.
 
 ---
 
-# Current Simulation Model
+# Simulation Capabilities
 
-The simulator currently models:
+## Core Healthcare Simulation
 
-## Patient Population Growth
-
-Healthcare data generation is driven by a growing patient population.
-
-Current assumptions:
-
-- Initial patients: 100,000
-- Annual growth rate: 8%
-
----
+* Patient population growth
+* Twenty-year forecasting
+* Annual healthcare data generation
+* Multiple healthcare record types
 
 ## Healthcare Record Types
 
-| Record Type | Description |
-|------------|-------------|
-| EHR | Electronic Health Records |
-| MRI | Magnetic Resonance Imaging |
-| CT | Computed Tomography |
-| XRAY | X-Ray Imaging |
-| LAB | Laboratory Reports |
+Currently modelled:
 
-Each record type has:
+* Electronic Health Records (EHR)
+* MRI
+* CT
+* X-Ray
+* Laboratory Reports
 
-- Record size
-- Annual creation rate
-- Retention period
+Each record type includes:
+
+* Average record size
+* Annual generation rate
+* Retention policy
 
 ---
 
-## Storage Tiers
+## Storage Architecture
+
+The simulator models a tiered storage architecture consisting of:
 
 ### Active Storage
 
-Recently created records remain in operational storage for clinical use.
+Operational clinical storage containing recently created records.
 
 ### DNA Archive
 
-Older records automatically migrate to DNA archival storage once retention thresholds are reached.
+Historical records automatically migrate into DNA archival storage after configurable retention periods.
 
 ---
 
-# Simulation Workflow
+## DNA Storage Model
 
-Patient Growth
-↓
-Healthcare Record Generation
-↓
-Retention Policies
-↓
-Storage Tier Evaluation
-↓
-Active Storage
-↓
-DNA Archive
-↓
-20-Year Projection
+Current DNA modelling includes:
+
+* Configurable compression ratio
+* Physical DNA storage estimation
+* DNA media estimation
+* Logical vs physical storage comparison
 
 ---
 
-# Current Output
+## Storage Economics
 
-The simulator produces annual projections showing:
+The simulator estimates:
 
-- Patient population
-- Active storage consumption
-- DNA archive consumption
-- Total storage footprint
+* Active storage costs
+* DNA archive costs
+* Annual storage expenditure
+* Cost savings compared with retaining all records on active storage
 
-Example:
+---
 
-Year    Patients    Active TB    DNA TB    Total TB
---------------------------------------------------
-1       100,000     20.31        0.00      20.31
-5       136,048     80.49       38.68     119.17
-10      199,900    120.76      173.51     294.27
-20      431,570    260.72      668.86     929.57
+## Scenario Engine
+
+Multiple planning scenarios can be compared using configurable assumptions including:
+
+* DNA compression ratio
+* Storage costs
+* Patient growth
+* DNA technology improvements
+
+---
+
+## Healthcare Network Simulation
+
+Version 0.4.0 introduces healthcare network modelling.
+
+The simulator now supports multiple hospitals operating within a regional healthcare network including:
+
+* Community Hospital
+* Children's Hospital
+* Cancer Center
+* Trauma Center
+* Academic Medical Center
+
+The simulator aggregates:
+
+* Patient populations
+* Active storage
+* DNA archive capacity
+* Physical DNA requirements
+* Infrastructure savings
+
+---
+
+# Example Output
+
+The simulator produces multiple reports including:
+
+* Annual storage projections
+* Engineering summary
+* Scenario comparison
+* Healthcare network summary
+* Network insights
+
+Example Year 20 output:
+
+* Patients: 431,570
+* Active Storage: 260.72 TB
+* DNA Archive: 668.86 TB
+* Total Logical Storage: 929.57 TB
+* Physical DNA Required: 6.69 TB
+* Estimated Annual Savings: $123,738
+
+Healthcare Network Example:
+
+* Total Patients: 2.47 Million
+* Total Storage: 5.1 PB
+* Physical DNA Required: 36.25 TB
+* Annual Savings: $670K+
 
 ---
 
 # Architecture
 
-Repository Structure
-
+```text
 src/
-├── models/
-│   ├── record.py
-│   └── archive.py
-│
-├── simulation/
-│   └── hospital_simulator.py
-│
-└── main.py
+
+models/
+    hospital.py
+    record.py
+    archive.py
+    dna_storage_model.py
+
+simulation/
+    hospital_simulator.py
+    healthcare_network.py
+    scenario_engine.py
+
+reports/
+
+main.py
 
 docs/
-├── vision.md
-└── assumptions.md
+```
 
 ---
 
-# Milestone Status
+# Repository Structure
 
-## Milestone 1 - Complete
+```text
+README.md
+CHANGELOG.md
+VERSION
+ROADMAP.md
 
-- Patient growth simulation
-- Healthcare data generation
-- Annual storage forecasting
-- 20-year projection
+docs/
 
-## Milestone 2 - Complete
+src/
 
-- Record type tracking
-- Retention policies
-- Active storage modeling
-- DNA archive modeling
-- Automatic archive migration
-- Tiered storage reporting
-
-## Milestone 3 - Planned
-
-- DNA compression ratios
-- Physical DNA media calculations
-- Storage cost analysis
-- Cost savings estimation
-- Genomics data modeling
-
-## Milestone 4 - Planned
-
-- Multi-hospital simulation
-- Regional healthcare networks
-- National-scale healthcare systems
-- Interactive dashboards
-- Scenario analysis
-
----
-
-# Why DNA Storage?
-
-DNA has the potential to become one of the highest-density archival storage technologies ever developed.
-
-Potential advantages include:
-
-- Extremely high storage density
-- Long-term durability
-- Reduced physical footprint
-- Lower archival infrastructure requirements
-
-This simulator is intended to explore how such technology might be applied within healthcare environments.
+main.py
+```
 
 ---
 
@@ -226,22 +223,66 @@ This simulator is intended to explore how such technology might be applied withi
 
 Requirements:
 
-- Python 3.12+
+* Python 3.12+
 
 Run:
 
+```bash
 python main.py
+```
+
+The simulator generates:
+
+1. Annual Simulation Report
+2. Engineering Summary
+3. Scenario Comparison
+4. Healthcare Network Summary
+5. Network Insights
 
 ---
 
-# Future Vision
+# Design Principles
 
-The long-term goal is to evolve this project into a healthcare archival planning platform capable of modeling:
+The simulator is designed around five principles:
 
-- Hospital networks
-- National healthcare systems
-- Genomics repositories
-- DNA storage economics
-- Capacity planning scenarios
-- AI-assisted infrastructure recommendations
+* Simulation-first
+* Vendor neutral
+* Configurable assumptions
+* Modular architecture
+* Research oriented
 
+The project deliberately separates simulation assumptions from implementation so that future DNA storage technologies, pricing models, and healthcare environments can be evaluated without changing the simulation architecture.
+
+---
+
+# Roadmap
+
+Current Release
+
+* v0.4.0 — Healthcare Network Simulator
+
+Planned
+
+* v0.5.0 — Configuration-driven simulation
+* v0.6.0 — Monte Carlo and sensitivity analysis
+* v0.7.0 — Sustainability modelling
+* v0.8.0 — National healthcare simulation
+* v1.0.0 — Research platform
+
+See **ROADMAP.md** for additional detail.
+
+---
+
+# Disclaimer
+
+This project is intended for research, education, and technology exploration.
+
+The assumptions used within the simulator are configurable modelling parameters and should not be interpreted as validated real-world performance characteristics of DNA data storage technologies.
+
+---
+
+# License
+
+This project is released under the MIT License.
+
+See the LICENSE file for details.
